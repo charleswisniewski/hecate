@@ -1,0 +1,77 @@
+# this is an example of the Hygieia API
+swagger: "2.0"
+info:
+  title: Hygieia API
+  description: Hygieia, code hygiene
+  version: "1.0.0"
+# array of all schemes that your API supports
+schemes:
+  - https
+produces:
+  - application/json
+paths:
+  /deploy:
+    post:
+      responses:
+        "201":
+          description: String Response
+          schema:
+            type: string
+      consumes:
+        - application/json
+      produces:
+        - text/html
+      parameters:
+        - name: body
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/deploy'
+definitions:
+  DeployResponse:
+    properties:
+      message:
+        type: string
+  deploy:
+    description: Deploy
+    properties:
+      executionId:
+        type: string
+        description: id of execution
+      jobName:
+        type: string
+        description: name of job
+      jobUrl:
+        type: string
+        description: job url
+      appName:
+        type: string
+        description: application name
+      envName:
+        type: string
+        description: environment name to which this was deployed
+      artifactName:
+        type: string
+        description: name of artifact deployed
+      artifactVersion:
+        type: string
+        description: version of artifact
+      instanceUrl:
+        type: string
+        description: url at which the instance is running
+      deployStatus:
+        type: string
+        description: status of the deployment
+      startTime:
+        type: integer
+        description: time the deployment was started
+    required:
+      - executionId
+      - instanceUrl
+      - artifactName
+      - artifactVersion
+      - jobUrl
+      - jobName
+      - appName
+      - deployStatus
+      - envName
