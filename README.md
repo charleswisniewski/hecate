@@ -37,3 +37,27 @@ You should see no failures, if you do, then your instance of Hygieia does not ma
 ## Hygieia API
 The API of Hygieia is to be defined in [hygieia.yaml](hygieia.yaml)
 Currently only the deploy endpoint is described.
+
+
+
+## CLI v2
+Rough outline for v2 CLI
+
+1. Generate models from swagger - swagger should be passing against version X of hygieia
+
+install go-swagger(OS X, using homebrew):
+```
+brew tap go-swagger/go-swagger
+brew install go-swagger
+swagger generate client -f hygieia.yaml
+```
+This should generate two folders client and models(not included in this repo, yet)
+The commands/deploy.go file included is an example of how we can programatically invoke an API request based on the models defined in swagger.
+
+2. CLI generated from those models using cobra (@TODO)
+
+  a) persistent flags = base url
+  b) read in swagger models
+  c) convert swagger models via loop to cobra syntax
+
+An conceptual implementation is included in commands/deploy.go (commented out)
